@@ -1,5 +1,6 @@
 package com.upb.supplychain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,23 @@ public final class SupplyChainApp {
                     edge.getCapacity(), edge.getResidualCapacity());
         }
         System.out.println("\nFlujo máximo: " + maximum + " unidades/día");
-        System.out.println("Corte mínimo: B1->t (50) + B2->t (60) + B3->t (90) = 200.");
+        printMinimumCut(network, algorithm);
+    }
+
+    private static void printMinimumCut(Graph network, EdmondsKarp algorithm) {
+        boolean[] sourceSide = algorithm.getReachableFromSource();
+        List<String> cutEdges = new ArrayList<>();
+        int cutCapacity = 0;
+
+        for (Edge edge : network.getOriginalEdges()) {
+            if (sourceSide[edge.getFrom()] && !sourceSide[edge.getTo()]) {
+                cutEdges.add(NAMES[edge.getFrom()] + " -> " + NAMES[edge.getTo()]
+                        + " (" + edge.getCapacity() + ")");
+                cutCapacity += edge.getCapacity();
+            }
+        }
+        System.out.println("Corte mínimo calculado: " + String.join(" + ", cutEdges)
+                + " = " + cutCapacity + ".");
     }
 
     private static String formatPath(List<Integer> path) {

@@ -1,5 +1,9 @@
 # Guía de presentación — 12 minutos
 
+> **Versión complementaria.** Para la exposición final sin código se debe usar
+> [presentacion_piense.md](presentacion_piense.md), centrada únicamente en el
+> razonamiento y en el ejemplo de la cadena de suministro.
+
 > Sustituir los nombres de expositores y ensayar con cronómetro. Cada integrante debe poder cubrir cualquier sección, en especial las preguntas del final.
 
 ## 0:00–2:00 — Problema y modelado

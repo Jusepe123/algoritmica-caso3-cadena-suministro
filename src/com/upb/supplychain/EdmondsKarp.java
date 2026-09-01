@@ -13,6 +13,8 @@ public final class EdmondsKarp {
     private final int source;
     private final int sink;
     private final List<Augmentation> augmentations = new ArrayList<>();
+    private boolean computed;
+    private int maximumFlow;
 
     public EdmondsKarp(Graph graph, int source, int sink) {
         this.graph = graph;
@@ -25,6 +27,8 @@ public final class EdmondsKarp {
     }
 
     public int maxFlow() {
+        if (computed) return maximumFlow;
+
         int total = 0;
         Edge[] parent = new Edge[graph.getVertices()];
         while (bfs(parent)) {
@@ -43,7 +47,9 @@ public final class EdmondsKarp {
             total += bottleneck;
             augmentations.add(new Augmentation(path, bottleneck, total));
         }
-        return total;
+        maximumFlow = total;
+        computed = true;
+        return maximumFlow;
     }
 
     private boolean bfs(Edge[] parent) {
@@ -69,6 +75,29 @@ public final class EdmondsKarp {
 
     public List<Augmentation> getAugmentations() {
         return Collections.unmodifiableList(augmentations);
+    }
+
+    /**
+     * Devuelve los vértices alcanzables desde la fuente en la red residual actual.
+     * Después de calcular el flujo máximo, estos vértices forman el lado S de un
+     * corte mínimo.
+     */
+    public boolean[] getReachableFromSource() {
+        boolean[] reachable = new boolean[graph.getVertices()];
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(source);
+        reachable[source] = true;
+
+        while (!queue.isEmpty()) {
+            int current = queue.remove();
+            for (Edge edge : graph.getEdgesFrom(current)) {
+                if (!reachable[edge.getTo()] && edge.getResidualCapacity() > 0) {
+                    reachable[edge.getTo()] = true;
+                    queue.add(edge.getTo());
+                }
+            }
+        }
+        return reachable;
     }
 
     public static final class Augmentation {
