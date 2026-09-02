@@ -7,10 +7,14 @@ El resultado del caso es **200 unidades por día**.
 ## Contenido
 
 - `src/`: implementación de la red residual y Edmonds–Karp.
-- `test/`: pruebas autocontenidas ejecutables sin dependencias externas.
+- `test/`: pruebas autocontenidas ejecutables sin dependencias externas; verifican
+  el resultado, las capacidades, la conservación, el corte mínimo y el uso de una
+  arista residual inversa.
 - `docs/informe_tecnico.md`: informe para la entrega.
 - `docs/analisis_del_flujo.md`: cálculo manual, red residual y corte mínimo.
-- `presentation.md`: guía para una exposición de 12 minutos.
+- `presentacion_piense.md`: presentación final sin código, centrada en el
+  razonamiento y en el ejemplo construido.
+- `presentation.md`: guía técnica complementaria de exposición.
 
 ## Requisitos
 
@@ -26,7 +30,8 @@ javac -d bin src/com/upb/supplychain/*.java
 java -cp bin com.upb.supplychain.SupplyChainApp
 ```
 
-La aplicación imprime los caminos aumentantes, sus cuellos de botella, el flujo final de cada tramo y el corte mínimo.
+La aplicación imprime los caminos aumentantes, sus cuellos de botella, el flujo
+final de cada tramo y el corte mínimo calculado desde la red residual final.
 
 ## Ejecutar pruebas
 

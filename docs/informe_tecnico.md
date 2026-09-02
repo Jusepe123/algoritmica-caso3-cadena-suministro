@@ -5,6 +5,21 @@
 **Integrantes:** _Completar antes de entregar_  
 **Fecha:** _Completar antes de entregar_
 
+## Uso de herramientas de inteligencia artificial
+
+Se utilizó **Codex** como herramienta de apoyo para revisar la organización del
+proyecto, explicar el funcionamiento de la red residual, preparar el material de
+exposición y proponer mejoras puntuales. En particular, ayudó a convertir la
+impresión fija del corte mínimo en un cálculo basado en la red residual final y a
+ampliar las pruebas de capacidad, conservación y aristas inversas.
+
+El resultado no se aceptó únicamente por haber sido producido con asistencia de
+una herramienta. El caso se validó manualmente comprobando las cuatro
+aumentaciones, la conservación del flujo en B1, B2 y B3, la saturación de las
+entradas al centro y el corte de capacidad 200. La compilación y las pruebas se
+ejecutaron después de los cambios. Cada integrante debe poder reconstruir estas
+comprobaciones sin consultar el código durante la defensa.
+
 ## 1. Resumen ejecutivo
 
 Se modeló el traslado diario de productos desde una fábrica hacia un centro de distribución mediante una red de flujo dirigida. Las bodegas B1, B2 y B3 son puntos intermedios; cada tramo tiene una capacidad máxima diaria. Para encontrar la cantidad máxima transportable se implementó Ford–Fulkerson con selección BFS de caminos, conocido como Edmonds–Karp.
@@ -26,7 +41,9 @@ La fuente `s` es la fábrica y el sumidero `t` es el centro final. B1, B2 y B3 r
 | B2 → t | 60 | Entrega directa al centro |
 | B3 → t | 90 | Entrega final desde B3 |
 
-El enunciado menciona `vertices = 6`, pero la matriz, el diagrama y el caso contienen cinco nodos: `s`, B1, B2, B3 y `t`. La implementación usa correctamente **5 vértices**.
+El borrador inicial mencionaba `vertices = 6`, pero la matriz, el diagrama y el
+caso contienen cinco nodos: `s`, B1, B2, B3 y `t`. La implementación usa
+correctamente **5 vértices**.
 
 ## 3. Solución algorítmica
 

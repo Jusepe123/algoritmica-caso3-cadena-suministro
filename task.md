@@ -1,5 +1,9 @@
 # Documentación del Proyecto: Caso 3 - Cadena de Suministro
 
+> **Nota:** este archivo conserva la planificación inicial. La versión final del
+> proyecto está descrita en `README.md` y `docs/informe_tecnico.md`; la exposición
+> final sin código se encuentra en `presentacion_piense.md`.
+
 ## Universidad Privada Boliviana
 ### Algorítmica II - Redes de Flujo
 
@@ -97,7 +101,7 @@ class SupplyChainApp {
 ### Datos de Entrada
 ```java
 // Formato de configuración
-int vertices = 6; // s, B1, B2, B3, t (5 nodos)
+int vertices = 5; // s, B1, B2, B3, t
 int[][] capacities = {
     // s  B1 B2 B3  t
     {0, 100, 120, 0, 0},   // s
@@ -114,9 +118,8 @@ int[][] capacities = {
 
 ### Sección de LLM
 
-**Herramientas Utilizadas:**
-- **Codex** Codex esta permitido y la idea del proyecto es ver el manejo de inteligencia artificial y de ver que tan bien preparado esta el estudiante
-**Claude Code** Claude Code esta permitido pero el uso de la herramienta debe estar justificado en caso de que Codex no sea suficiente, bloqueos, con la idea de que Codex no fue suficiente como herramienta
+La declaración final sobre el uso de Codex y la validación realizada por el grupo
+se encuentra en `docs/informe_tecnico.md`.
 ### Especificaciones de Implementación
 
 #### 1. Algoritmo de Ford-Fulkerson/Edmonds-Karp
@@ -180,19 +183,18 @@ private boolean bfs(int[] parent) {
 ### 1. Código Fuente
 ```
 /project
-├── src/
-│   ├── com/upb/supplychain/
-│   │   ├── Edge.java
-│   │   ├── Graph.java
-│   │   ├── EdmondsKarp.java
-│   │   ├── SupplyChainApp.java
-│   │   └── DataGenerator.java
-│   └── test/
-│       └── EdmondsKarpTest.java
+├── src/com/upb/supplychain/
+│   ├── Edge.java
+│   ├── Graph.java
+│   ├── EdmondsKarp.java
+│   └── SupplyChainApp.java
+├── test/com/upb/supplychain/
+│   └── EdmondsKarpTest.java
 ├── docs/
-│   ├── case_analysis.md
-│   ├── flow_calculation.xlsx
-│   └── hand_drawn_graph.pdf
+│   ├── informe_tecnico.md
+│   └── analisis_del_flujo.md
+├── presentacion_piense.md
+├── presentation.md
 └── README.md
 ```
 
@@ -294,7 +296,7 @@ private boolean bfs(int[] parent) {
 - Java 11 o superior
 - Maven o Gradle (opcional)
 - IDE recomendado: IntelliJ IDEA / Eclipse
-- JUnit 4 para pruebas unitarias
+- Las pruebas son autocontenidas y no requieren JUnit
 
 ### Comandos de Ejecución
 ```bash
@@ -305,8 +307,8 @@ javac -d bin src/com/upb/supplychain/*.java
 java -cp bin com.upb.supplychain.SupplyChainApp
 
 # Ejecutar tests
-javac -cp "lib/junit-4.12.jar:bin" test/*.java
-java -cp "lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:bin" org.junit.runner.JUnitCore EdmondsKarpTest
+javac -d bin src/com/upb/supplychain/*.java test/com/upb/supplychain/EdmondsKarpTest.java
+java -cp bin com.upb.supplychain.EdmondsKarpTest
 ```
 
 ---
